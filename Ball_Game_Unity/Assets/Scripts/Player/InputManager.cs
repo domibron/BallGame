@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 [DefaultExecutionOrder(-1)]
 public class InputManager : MonoBehaviour
@@ -22,11 +23,13 @@ public class InputManager : MonoBehaviour
     private void OnEnable()
     {
         touchControls.Enable();
+        EnhancedTouchSupport.Enable();
     }
 
     private void OnDisable()
     {
         touchControls.Disable();
+        EnhancedTouchSupport.Disable();
     }
 
     private void Start()
@@ -37,13 +40,27 @@ public class InputManager : MonoBehaviour
 
     private void StartTouch(InputAction.CallbackContext context)
     {
-        print(touchControls.Touch.TouchPosition.ReadValue<Vector2>());
+        //print(touchControls.Touch.TouchPosition.ReadValue<Vector2>());
         if (OnStartTouch != null) OnStartTouch(touchControls.Touch.TouchPosition.ReadValue<Vector2>(), (float)context.startTime);
     }
 
     private void EndTouch(InputAction.CallbackContext context)
     {
-        print(touchControls.Touch.TouchPosition.ReadValue<Vector2>());
+        //print(touchControls.Touch.TouchPosition.ReadValue<Vector2>());
         if (OnStartTouch != null) OnEndTouch(touchControls.Touch.TouchPosition.ReadValue<Vector2>(), (float)context.time);
+    }
+
+    private void FingerDown(Finger finger)
+    {
+        if (OnStartTouch != null) OnStartTouch(finger.screenPosition, Time.time);
+    }
+
+    void Update()
+    {
+        //Debug.Log(UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches);
+        foreach (UnityEngine.InputSystem.EnhancedTouch.Touch touch in UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches)
+        {
+            Debug.Log(touch.phase == UnityEngine.InputSystem.TouchPhase.Began);
+        }
     }
 }
