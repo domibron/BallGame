@@ -46,8 +46,10 @@ public class InputManager : MonoBehaviour
 
     private void EndTouch(InputAction.CallbackContext context)
     {
-        //print(touchControls.Touch.TouchPosition.ReadValue<Vector2>());
-        if (OnStartTouch != null) OnEndTouch(touchControls.Touch.TouchPosition.ReadValue<Vector2>(), (float)context.time);
+        print(touchControls.Touch.TouchPosition.ReadValue<Vector2>());
+        print(context.time);
+        if (OnEndTouch != null) OnEndTouch(touchControls.Touch.TouchPosition.ReadValue<Vector2>(), (float)context.time); // onend touch - i will asfasfasfasfasffasasfasfasfsfasfasf
+        // no wonder it was null, cos it wasn't checking if it was null, but im the guru of unity, i assended the gods and became...
     }
 
     private void FingerDown(Finger finger)
@@ -58,9 +60,9 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         //Debug.Log(UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches);
-        foreach (UnityEngine.InputSystem.EnhancedTouch.Touch touch in UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches)
-        {
-            Debug.Log(touch.phase == UnityEngine.InputSystem.TouchPhase.Began);
-        }
+        //foreach (UnityEngine.InputSystem.EnhancedTouch.Touch touch in UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches)
+        //{
+        //    Debug.Log(touch.phase == UnityEngine.InputSystem.TouchPhase.Began);
+        //}
     }
 }
