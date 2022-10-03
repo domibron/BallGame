@@ -55,17 +55,17 @@ public class InputManager : MonoBehaviour
 
     private void StartPrimaryTouch(InputAction.CallbackContext context)
     {
-        if (OnStartPrimaryTouch != null) OnStartPrimaryTouch(Utils.ScreenToWorld(mainCamera, touchControls.Touch.PrimaryPosision.ReadValue<Vector2>()), (float)context.startTime);
+        if (OnStartPrimaryTouch != null) OnStartPrimaryTouch(Utils.VeiwportToWorld(mainCamera, touchControls.Touch.PrimaryPosision.ReadValue<Vector2>()), (float)context.startTime);
     }
 
     private void EndPrimaryTouch(InputAction.CallbackContext context)
     {
-        if (OnEndPrimaryTouch != null) OnEndPrimaryTouch(Utils.ScreenToWorld(mainCamera, touchControls.Touch.PrimaryPosision.ReadValue<Vector2>()), (float)context.startTime);
+        if (OnEndPrimaryTouch != null) OnEndPrimaryTouch(Utils.VeiwportToWorld(mainCamera, touchControls.Touch.PrimaryPosision.ReadValue<Vector2>()), (float)context.startTime);
     }
 
     public Vector2 PrimaryPosition()
     {
-        return Utils.ScreenToWorld(mainCamera, touchControls.Touch.PrimaryPosision.ReadValue<Vector2>());
+        return Utils.VeiwportToWorld(mainCamera, touchControls.Touch.PrimaryPosision.ReadValue<Vector2>());
     }
 
 

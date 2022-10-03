@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Utils : MonoBehaviour
 {
-    public static Vector3 ScreenToWorld(Camera cam, Vector3 pos)
+    public static Vector3 VeiwportToWorld(Camera cam, Vector3 pos)
     {
         pos.z = cam.nearClipPlane;
-        return cam.ScreenToWorldPoint(pos);
+        return cam.ViewportToWorldPoint(pos);
     }
 }

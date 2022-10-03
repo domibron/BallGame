@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwipeRendererer : MonoBehaviour
+public class PlayerScript : MonoBehaviour
 {
     [SerializeField]
     private float minimumDistance = .2f;
@@ -10,7 +10,6 @@ public class SwipeRendererer : MonoBehaviour
     private float maximumTime = 1f;
     [SerializeField, Range(0f, 1f)]
     private float directionThreshold = .9f;
-
 
 
     private InputManager inputManager;
@@ -29,10 +28,6 @@ public class SwipeRendererer : MonoBehaviour
         inputManager = InputManager.Instance;
         rb = GetComponent<Rigidbody>();
     }
-
-
-
-
 
     void OnEnable()
     {
@@ -79,7 +74,7 @@ public class SwipeRendererer : MonoBehaviour
     {
         if (Vector2.Dot(Vector2.up, direction) > directionThreshold)
         {
-            //print("swiped up");
+            print("swiped up");
             rb.AddForce(Vector3.forward, ForceMode.Impulse);
         }
         else if (Vector2.Dot(Vector2.right, direction) > directionThreshold)
@@ -89,7 +84,7 @@ public class SwipeRendererer : MonoBehaviour
         }
         else if (Vector2.Dot(Vector2.down, direction) > directionThreshold)
         {
-            //print("swiped down");
+            print("swiped down");
             rb.AddForce(Vector3.back, ForceMode.Impulse);
         }
         else if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
