@@ -10,6 +10,8 @@ public class PlayerScript : MonoBehaviour
     private float maximumTime = 1f;
     [SerializeField, Range(0f, 1f)]
     private float directionThreshold = .9f;
+    [SerializeField]
+    private float rotationAmmount;
 
 
     private InputManager inputManager;
@@ -80,6 +82,8 @@ public class PlayerScript : MonoBehaviour
         else if (Vector2.Dot(Vector2.right, direction) > directionThreshold)
         {
             //print("swiped right");
+            //transform.rotation = Quaternion.Euler(transform.rotation.x + rotationAmmount, transform.rotation.y, transform.rotation.z);
+            transform.Rotate(new Vector3(0, rotationAmmount, 0));
 
         }
         else if (Vector2.Dot(Vector2.down, direction) > directionThreshold)
@@ -90,7 +94,8 @@ public class PlayerScript : MonoBehaviour
         else if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
         {
             //print("swiped left");
-
+            //transform.rotation = Quaternion.Euler(transform.rotation.x - rotationAmmount, transform.rotation.y, transform.rotation.z);
+            transform.Rotate(new Vector3(0, -rotationAmmount, 0));
         }
     }
 }
