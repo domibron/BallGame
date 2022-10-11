@@ -13,6 +13,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private float rotationAmmount;
 
+    public Transform orientation;
+
 
     private InputManager inputManager;
 
@@ -22,6 +24,8 @@ public class PlayerScript : MonoBehaviour
     private float startTime;
     private Vector2 endPosision;
     private float endTime;
+
+    private float yRotation;
 
     private Coroutine coroutine;
 
@@ -61,11 +65,9 @@ public class PlayerScript : MonoBehaviour
 
     private void DetectSwipe()
     {
-        if (Vector3.Distance(startPosision, endPosision) >= minimumDistance &&
-            (endTime - startTime) <= maximumTime)
+        if (Vector3.Distance(startPosision, endPosision) >= minimumDistance && (endTime - startTime) <= maximumTime)
         {
             Debug.Log("swiped!");
-            Debug.DrawLine(startPosision, endPosision, Color.red);
             Vector3 direction = endPosision - startPosision;
             Vector2 direction2D = new Vector2(direction.x, direction.y).normalized;
             SwipeDirection(direction2D);
@@ -77,25 +79,27 @@ public class PlayerScript : MonoBehaviour
         if (Vector2.Dot(Vector2.up, direction) > directionThreshold)
         {
             print("swiped up");
-            rb.AddForce(Vector3.forward, ForceMode.Impulse);
+            rb.AddForce(orientation.forward, ForceMode.Impulse);
         }
         else if (Vector2.Dot(Vector2.right, direction) > directionThreshold)
         {
-            //print("swiped right");
+            print("swiped right");
+            yRotation += rotationAmmount;
             //transform.rotation = Quaternion.Euler(transform.rotation.x + rotationAmmount, transform.rotation.y, transform.rotation.z);
-            transform.Rotate(new Vector3(0, rotationAmmount, 0));
+            orientation.transform.rotation = Quaternion.Euler(orientation.rotation.x, yRotation, orientation.rotation.z);
 
         }
         else if (Vector2.Dot(Vector2.down, direction) > directionThreshold)
         {
             print("swiped down");
-            rb.AddForce(Vector3.back, ForceMode.Impulse);
+            rb.AddForce(-orientation.forward, ForceMode.Impulse);
         }
         else if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
         {
-            //print("swiped left");
+            print("swiped left");
+            yRotation -= rotationAmmount;
             //transform.rotation = Quaternion.Euler(transform.rotation.x - rotationAmmount, transform.rotation.y, transform.rotation.z);
-            transform.Rotate(new Vector3(0, -rotationAmmount, 0));
+            orientation.transform.rotation = Quaternion.Euler(orientation.rotation.x, yRotation, orientation.rotation.z);
         }
     }
 }

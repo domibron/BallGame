@@ -9,4 +9,10 @@ public class Utils : MonoBehaviour
         pos.z = cam.nearClipPlane;
         return cam.ViewportToWorldPoint(pos);
     }
+
+    public static Vector3 ViewportToScreenPoint(Camera cam, Vector3 pos) // use this other wise camera is going to bork.
+    {
+        pos.z = cam.nearClipPlane;
+        return cam.ViewportToScreenPoint(pos);
+    }
 }
