@@ -13,6 +13,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private float rotationAmmount;
 
+    public Transform vertiualCamera;
     public Transform orientation;
 
 
@@ -67,7 +68,6 @@ public class PlayerScript : MonoBehaviour
     {
         if (Vector3.Distance(startPosision, endPosision) >= minimumDistance && (endTime - startTime) <= maximumTime)
         {
-            Debug.Log("swiped!");
             Vector3 direction = endPosision - startPosision;
             Vector2 direction2D = new Vector2(direction.x, direction.y).normalized;
             SwipeDirection(direction2D);
@@ -76,14 +76,50 @@ public class PlayerScript : MonoBehaviour
 
     private void SwipeDirection(Vector2 direction)
     {
+        print(direction);
+
+        if (direction.x > 0)
+        {
+            float percentOfSwipe = Vector2.Dot(Vector2.up, direction);
+
+            if (direction.y > 0)
+            {
+                // top right
+
+            }
+            else
+            {
+                // bottom right
+
+            }
+        }
+        else
+        {
+            float percentOfSwipe = Vector2.Dot(Vector2.down, direction);
+
+            if (direction.y > 0)
+            {
+                // top left
+
+            }
+            else
+            {
+                // bottom left
+
+            }
+        }
+
+
+        print(Vector2.Dot(Vector2.up, direction));
+
         if (Vector2.Dot(Vector2.up, direction) > directionThreshold)
         {
-            print("swiped up");
+            //print("swiped up");
             rb.AddForce(orientation.forward, ForceMode.Impulse);
         }
         else if (Vector2.Dot(Vector2.right, direction) > directionThreshold)
         {
-            print("swiped right");
+            //print("swiped right");
             yRotation += rotationAmmount;
             //transform.rotation = Quaternion.Euler(transform.rotation.x + rotationAmmount, transform.rotation.y, transform.rotation.z);
             orientation.transform.rotation = Quaternion.Euler(orientation.rotation.x, yRotation, orientation.rotation.z);
@@ -91,12 +127,12 @@ public class PlayerScript : MonoBehaviour
         }
         else if (Vector2.Dot(Vector2.down, direction) > directionThreshold)
         {
-            print("swiped down");
+            //print("swiped down");
             rb.AddForce(-orientation.forward, ForceMode.Impulse);
         }
         else if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
         {
-            print("swiped left");
+            //print("swiped left");
             yRotation -= rotationAmmount;
             //transform.rotation = Quaternion.Euler(transform.rotation.x - rotationAmmount, transform.rotation.y, transform.rotation.z);
             orientation.transform.rotation = Quaternion.Euler(orientation.rotation.x, yRotation, orientation.rotation.z);
