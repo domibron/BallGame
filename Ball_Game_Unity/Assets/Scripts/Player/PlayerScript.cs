@@ -4,138 +4,140 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    [SerializeField]
-    private float minimumDistance = .2f;
-    [SerializeField]
-    private float maximumTime = 1f;
-    [SerializeField, Range(0f, 1f)]
-    private float directionThreshold = .9f;
-    [SerializeField]
-    private float rotationAmmount;
+	[SerializeField]
+	private float minimumDistance = .2f;
+	[SerializeField]
+	private float maximumTime = 1f;
+	[SerializeField, Range(0f, 1f)]
+	private float directionThreshold = .9f;
+	[SerializeField]
+	private float rotationAmmount;
 
-    public Transform vertiualCamera;
-    public Transform orientation;
-
-
-    private InputManager inputManager;
-
-    private Rigidbody rb;
-
-    private Vector2 startPosision;
-    private float startTime;
-    private Vector2 endPosision;
-    private float endTime;
-
-    private float yRotation;
-
-    private Coroutine coroutine;
-
-    void Awake()
-    {
-        inputManager = InputManager.Instance;
-        rb = GetComponent<Rigidbody>();
-    }
-
-    void OnEnable()
-    {
-        inputManager.OnStartPrimaryTouch += SwipeStart;
-        inputManager.OnEndPrimaryTouch += SwipeEnd;
-    }
-
-    void OnDisable()
-    {
-        inputManager.OnStartPrimaryTouch -= SwipeStart;
-        inputManager.OnEndPrimaryTouch -= SwipeEnd;
-    }
-
-    private void SwipeStart(Vector2 pos, float time)
-    {
-        startPosision = pos;
-        startTime = time;
-    }
-
-    private void SwipeEnd(Vector2 pos, float time)
-    {
-
-        endPosision = pos;
-        endTime = time;
-        DetectSwipe();
-    }
+	public Transform vertiualCamera;
+	public Transform orientation;
 
 
+	private InputManager inputManager;
 
-    private void DetectSwipe()
-    {
-        if (Vector3.Distance(startPosision, endPosision) >= minimumDistance && (endTime - startTime) <= maximumTime)
-        {
-            Vector3 direction = endPosision - startPosision;
-            Vector2 direction2D = new Vector2(direction.x, direction.y).normalized;
-            SwipeDirection(direction2D);
-        }
-    }
+	private Rigidbody rb;
 
-    private void SwipeDirection(Vector2 direction)
-    {
-        print(direction);
+	private Vector2 startPosision;
+	private float startTime;
+	private Vector2 endPosision;
+	private float endTime;
 
-        if (direction.x > 0)
-        {
-            float percentOfSwipe = Vector2.Dot(Vector2.up, direction);
+	private float yRotation;
 
-            if (direction.y > 0)
-            {
-                // top right
+	private Coroutine coroutine;
 
-            }
-            else
-            {
-                // bottom right
+	void Awake()
+	{
+		inputManager = InputManager.Instance;
+		rb = GetComponent<Rigidbody>();
+	}
 
-            }
-        }
-        else
-        {
-            float percentOfSwipe = Vector2.Dot(Vector2.down, direction);
+	void OnEnable()
+	{
+		inputManager.OnStartPrimaryTouch += SwipeStart;
+		inputManager.OnEndPrimaryTouch += SwipeEnd;
+	}
 
-            if (direction.y > 0)
-            {
-                // top left
+	void OnDisable()
+	{
+		inputManager.OnStartPrimaryTouch -= SwipeStart;
+		inputManager.OnEndPrimaryTouch -= SwipeEnd;
+	}
 
-            }
-            else
-            {
-                // bottom left
+	private void SwipeStart(Vector2 pos, float time)
+	{
+		startPosision = pos;
+		startTime = time;
+	}
 
-            }
-        }
+	private void SwipeEnd(Vector2 pos, float time)
+	{
+
+		endPosision = pos;
+		endTime = time;
+		DetectSwipe();
+	}
 
 
-        print(Vector2.Dot(Vector2.up, direction));
 
-        if (Vector2.Dot(Vector2.up, direction) > directionThreshold)
-        {
-            //print("swiped up");
-            rb.AddForce(orientation.forward, ForceMode.Impulse);
-        }
-        else if (Vector2.Dot(Vector2.right, direction) > directionThreshold)
-        {
-            //print("swiped right");
-            yRotation += rotationAmmount;
-            //transform.rotation = Quaternion.Euler(transform.rotation.x + rotationAmmount, transform.rotation.y, transform.rotation.z);
-            orientation.transform.rotation = Quaternion.Euler(orientation.rotation.x, yRotation, orientation.rotation.z);
+	private void DetectSwipe()
+	{
+		if (Vector3.Distance(startPosision, endPosision) >= minimumDistance && (endTime - startTime) <= maximumTime)
+		{
+			Vector3 direction = endPosision - startPosision;
+			Vector2 direction2D = new Vector2(direction.x, direction.y).normalized;
+			SwipeDirection(direction2D);
+		}
+	}
 
-        }
-        else if (Vector2.Dot(Vector2.down, direction) > directionThreshold)
-        {
-            //print("swiped down");
-            rb.AddForce(-orientation.forward, ForceMode.Impulse);
-        }
-        else if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
-        {
-            //print("swiped left");
-            yRotation -= rotationAmmount;
-            //transform.rotation = Quaternion.Euler(transform.rotation.x - rotationAmmount, transform.rotation.y, transform.rotation.z);
-            orientation.transform.rotation = Quaternion.Euler(orientation.rotation.x, yRotation, orientation.rotation.z);
-        }
-    }
+	private void SwipeDirection(Vector2 direction)
+	{
+		print(direction);
+
+		if (direction.x > 0) // right
+		{
+			float percentOfSwipe = Vector2.Dot(Vector2.right, direction);
+
+			if (direction.y > 0)
+			{
+				// top right
+			
+			}
+			else
+			{
+				// bottom right
+				math
+				
+			}
+			
+		}
+		else // left
+		{
+			float percentOfSwipe = Vector2.Dot(Vector2.left, direction);
+
+			if (direction.y > 0)
+			{
+				// top left
+
+			}
+			else
+			{
+				// bottom left
+
+			}
+		}
+
+
+		print(Vector2.Dot(Vector2.up, direction));
+		
+		if (Vector2.Dot(Vector2.up, direction) > directionThreshold)
+		{
+			//print("swiped up");
+			rb.AddForce(orientation.forward, ForceMode.Impulse);
+		}
+		else if (Vector2.Dot(Vector2.right, direction) > directionThreshold)
+		{
+			//print("swiped right");
+			yRotation += rotationAmmount;
+			//transform.rotation = Quaternion.Euler(transform.rotation.x + rotationAmmount, transform.rotation.y, transform.rotation.z);
+			orientation.transform.rotation = Quaternion.Euler(orientation.rotation.x, yRotation, orientation.rotation.z);
+
+		}
+		else if (Vector2.Dot(Vector2.down, direction) > directionThreshold)
+		{
+			//print("swiped down");
+			rb.AddForce(-orientation.forward, ForceMode.Impulse);
+		}
+		else if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
+		{
+			//print("swiped left");
+			yRotation -= rotationAmmount;
+			//transform.rotation = Quaternion.Euler(transform.rotation.x - rotationAmmount, transform.rotation.y, transform.rotation.z);
+			orientation.transform.rotation = Quaternion.Euler(orientation.rotation.x, yRotation, orientation.rotation.z);
+		}
+	}
 }
