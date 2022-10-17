@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour
 
 	public Transform vertiualCamera;
 	public Transform orientation;
+	public Transform mainCamera;
 
 
 	private InputManager inputManager;
@@ -76,68 +77,103 @@ public class PlayerScript : MonoBehaviour
 
 	private void SwipeDirection(Vector2 direction)
 	{
-		print(direction);
+		//print(direction);
+		float percentOfSwipe = Vector2.Dot(Vector2.up, direction);
+		float absPercentOfSwipe;
+		float rotationY = 180 * vertiualCamera.rotation.y; 
 
 		if (direction.x > 0) // right
 		{
-			float percentOfSwipe = Vector2.Dot(Vector2.right, direction);
+			
+			print("right" + percentOfSwipe);
 
 			if (direction.y > 0)
 			{
-				// top right
-			
+				// top right 90 to 0
+				percentOfSwipe = 1 - percentOfSwipe; // inverts the percent so is 0 to 90
+
+				float ninetyPercent = 90 * percentOfSwipe;
+
+				float ammountToRotate = rotationY + ninetyPercent;
+
+				orientation.transform.rotation = Quaternion.Euler(orientation.rotation.x, ammountToRotate, orientation.rotation.z);
+				rb.AddForce(orientation.forward, ForceMode.Impulse);
+
 			}
 			else
 			{
-				// bottom right
-				math
-				
+				// bottom right 90 to 180
+
+				float ninetyPercent = 90 * -percentOfSwipe;
+
+				float ammountToRotate = (rotationY + 90) + ninetyPercent;
+
+				orientation.transform.rotation = Quaternion.Euler(orientation.rotation.x, ammountToRotate, orientation.rotation.z);
+				rb.AddForce(orientation.forward, ForceMode.Impulse);
+
 			}
 			
 		}
 		else // left
 		{
-			float percentOfSwipe = Vector2.Dot(Vector2.left, direction);
+			print("Left" + percentOfSwipe);
 
 			if (direction.y > 0)
 			{
-				// top left
+				// top left, -90 to 0
+
+				percentOfSwipe = 1 - percentOfSwipe; // inverts the percent so is 0 to -90
+
+				float ninetyPercent = 90 * -percentOfSwipe;
+
+				float ammountToRotate = rotationY + ninetyPercent;
+
+				orientation.transform.rotation = Quaternion.Euler(orientation.rotation.x, ammountToRotate, orientation.rotation.z);
+				rb.AddForce(orientation.forward, ForceMode.Impulse);
+
 
 			}
 			else
 			{
-				// bottom left
 
+				// bottom left -90 to -180
+				float ninetyPercent = 90 * percentOfSwipe;
+
+				float ammountToRotate = (rotationY - 90) + ninetyPercent;
+
+				orientation.transform.rotation = Quaternion.Euler(orientation.rotation.x, ammountToRotate, orientation.rotation.z);
+				rb.AddForce(orientation.forward, ForceMode.Impulse);
+				
 			}
 		}
 
 
-		print(Vector2.Dot(Vector2.up, direction));
+		//print(Vector2.Dot(Vector2.up, direction));
 		
-		if (Vector2.Dot(Vector2.up, direction) > directionThreshold)
-		{
-			//print("swiped up");
-			rb.AddForce(orientation.forward, ForceMode.Impulse);
-		}
-		else if (Vector2.Dot(Vector2.right, direction) > directionThreshold)
-		{
-			//print("swiped right");
-			yRotation += rotationAmmount;
-			//transform.rotation = Quaternion.Euler(transform.rotation.x + rotationAmmount, transform.rotation.y, transform.rotation.z);
-			orientation.transform.rotation = Quaternion.Euler(orientation.rotation.x, yRotation, orientation.rotation.z);
+		//if (Vector2.Dot(Vector2.up, direction) > directionThreshold)
+		//{
+		//	//print("swiped up");
+		//	rb.AddForce(orientation.forward, ForceMode.Impulse);
+		//}
+		//else if (Vector2.Dot(Vector2.right, direction) > directionThreshold)
+		//{
+		//	//print("swiped right");
+		//	yRotation += rotationAmmount;
+		//	//transform.rotation = Quaternion.Euler(transform.rotation.x + rotationAmmount, transform.rotation.y, transform.rotation.z);
+		//	orientation.transform.rotation = Quaternion.Euler(orientation.rotation.x, yRotation, orientation.rotation.z);
 
-		}
-		else if (Vector2.Dot(Vector2.down, direction) > directionThreshold)
-		{
-			//print("swiped down");
-			rb.AddForce(-orientation.forward, ForceMode.Impulse);
-		}
-		else if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
-		{
-			//print("swiped left");
-			yRotation -= rotationAmmount;
-			//transform.rotation = Quaternion.Euler(transform.rotation.x - rotationAmmount, transform.rotation.y, transform.rotation.z);
-			orientation.transform.rotation = Quaternion.Euler(orientation.rotation.x, yRotation, orientation.rotation.z);
-		}
+		//}
+		//else if (Vector2.Dot(Vector2.down, direction) > directionThreshold)
+		//{
+		//	//print("swiped down");
+		//	rb.AddForce(-orientation.forward, ForceMode.Impulse);
+		//}
+		//else if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
+		//{
+		//	//print("swiped left");
+		//	yRotation -= rotationAmmount;
+		//	//transform.rotation = Quaternion.Euler(transform.rotation.x - rotationAmmount, transform.rotation.y, transform.rotation.z);
+		//	orientation.transform.rotation = Quaternion.Euler(orientation.rotation.x, yRotation, orientation.rotation.z);
+		//}
 	}
 }
