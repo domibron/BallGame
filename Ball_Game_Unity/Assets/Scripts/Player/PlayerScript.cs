@@ -79,15 +79,19 @@ public class PlayerScript : MonoBehaviour
 	{
 		//print(direction);
 		float percentOfSwipe = Vector2.Dot(Vector2.up, direction);
-		float absPercentOfSwipe;
-		float rotationY = 180 * vertiualCamera.rotation.y; 
+		float rotationY = 180 * vertiualCamera.rotation.y; // try local with main camera
 
-		if (direction.x > 0) // right
+		if (Vector2.Dot(Vector2.up, direction) > directionThreshold)
+        {
+			orientation.transform.rotation = Quaternion.Euler(orientation.rotation.x, rotationY, orientation.rotation.z);
+			rb.AddForce(orientation.forward, ForceMode.Impulse);
+		}
+		else if (direction.x > 0) // right
 		{
 			
-			print("right" + percentOfSwipe);
+			print("right " + percentOfSwipe);
 
-			if (direction.y > 0)
+			if (direction.y > 0) // can use the whole 90 to -90 / 1 to -1
 			{
 				// top right 90 to 0
 				percentOfSwipe = 1 - percentOfSwipe; // inverts the percent so is 0 to 90
@@ -104,7 +108,7 @@ public class PlayerScript : MonoBehaviour
 			{
 				// bottom right 90 to 180
 
-				float ninetyPercent = 90 * -percentOfSwipe;
+				float ninetyPercent = 90 * -percentOfSwipe; // look at this -Var might not work
 
 				float ammountToRotate = (rotationY + 90) + ninetyPercent;
 
@@ -116,7 +120,7 @@ public class PlayerScript : MonoBehaviour
 		}
 		else // left
 		{
-			print("Left" + percentOfSwipe);
+			print("Left " + percentOfSwipe);
 
 			if (direction.y > 0)
 			{
@@ -124,7 +128,7 @@ public class PlayerScript : MonoBehaviour
 
 				percentOfSwipe = 1 - percentOfSwipe; // inverts the percent so is 0 to -90
 
-				float ninetyPercent = 90 * -percentOfSwipe;
+				float ninetyPercent = 90 * -percentOfSwipe; // look at this -Var might not work
 
 				float ammountToRotate = rotationY + ninetyPercent;
 
