@@ -37,6 +37,10 @@ public class PlayerScript : MonoBehaviour
     private float endY;
     private float startY;
 
+    private float rotateTo;
+    private float oldRotation;
+    private float PlayerModelY;
+
     private float time;
 
 
@@ -44,21 +48,20 @@ public class PlayerScript : MonoBehaviour
     {
         inputManager = InputManager.Instance;
         rb = GetComponent<Rigidbody>();
+
+        print(PlayerModel.transform.rotation.y);
     }
 
     void Update() // UPDATE
     {
-        if (PlayerModel.transform.rotation.y == Orientation.rotation.y)
-            time = 0;
-        else
-            time += Time.deltaTime * 1f;
+        // scrap the rotation
+        // scrap the rotation
 
-        PlayerModel.transform.rotation = Quaternion.Euler(PlayerModel.transform.rotation.x, Mathf.Lerp(PlayerModel.transform.rotation.y, Orientation.rotation.y, time), PlayerModel.transform.rotation.z);
-    }
-    
-    private void rotatePlayer(float start, float end, float speed = 1)
-    {
-        
+
+        time += Time.deltaTime * 50f;
+        PlayerModelY = Mathf.Lerp(oldRotation, rotateTo, time);
+
+        PlayerModel.transform.rotation = Quaternion.Euler(PlayerModel.transform.rotation.x, PlayerModelY, PlayerModel.transform.rotation.z);
     }
 
     void OnEnable()
@@ -101,17 +104,22 @@ public class PlayerScript : MonoBehaviour
     {
         //print(direction);
         float percentOfSwipe = Vector2.Dot(Vector2.up, direction);
-        float rotationY = 180 * VertuialCamera.rotation.y; // try local with main camera
+        float rotationY = 180 * VertuialCamera.rotation.y; //  | try local with main camera
 
         if (Vector2.Dot(Vector2.up, direction) > directionThreshold)
         {
             Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, rotationY, Orientation.rotation.z);
             rb.AddForce(Orientation.forward, ForceMode.Impulse);
+
+            // rotate model
+            oldRotation = 180 * PlayerModel.transform.rotation.y;
+            time = 0;
+            rotateTo = rotationY;
         }
         else if (direction.x > 0) // right
         {
 
-            print("right " + percentOfSwipe);
+            //print("right " + percentOfSwipe);
 
             if (direction.y > 0) // can use the whole 90 to -90 / 1 to -1
             {
@@ -125,6 +133,12 @@ public class PlayerScript : MonoBehaviour
                 Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, ammountToRotate, Orientation.rotation.z);
                 rb.AddForce(Orientation.forward, ForceMode.Impulse);
 
+                // rotate model
+                oldRotation = 180 * PlayerModel.transform.rotation.y;
+                time = 0;
+                rotateTo = ammountToRotate;
+                
+                print(oldRotation + " -old | ammo- " + ammountToRotate);
             }
             else
             {
@@ -137,12 +151,17 @@ public class PlayerScript : MonoBehaviour
                 Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, ammountToRotate, Orientation.rotation.z);
                 rb.AddForce(Orientation.forward, ForceMode.Impulse);
 
-            }
+                // rotate model
+                oldRotation = 180 * PlayerModel.transform.rotation.y;
+                time = 0;
+                rotateTo = ammountToRotate;
 
+                print(oldRotation + " -old | ammo- " + ammountToRotate);
+            }
         }
         else // left
         {
-            print("Left " + percentOfSwipe);
+            //print("Left " + percentOfSwipe);
 
             if (direction.y > 0)
             {
@@ -157,7 +176,12 @@ public class PlayerScript : MonoBehaviour
                 Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, ammountToRotate, Orientation.rotation.z);
                 rb.AddForce(Orientation.forward, ForceMode.Impulse);
 
+                // rotate model
+                oldRotation = 180 * PlayerModel.transform.rotation.y;
+                time = 0;
+                rotateTo = ammountToRotate;
 
+                print(oldRotation + " -old | ammo- " + ammountToRotate);
             }
             else
             {
@@ -170,10 +194,17 @@ public class PlayerScript : MonoBehaviour
                 Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, ammountToRotate, Orientation.rotation.z);
                 rb.AddForce(Orientation.forward, ForceMode.Impulse);
 
+                // rotate model
+                oldRotation = 180 * PlayerModel.transform.rotation.y;
+                time = 0;
+                PlayerModelY = ammountToRotate;
+
+                print(oldRotation + " -old | ammo- " + ammountToRotate);
             }
         }
 
 
+        
 
 
 
