@@ -14,6 +14,8 @@ public class PlayerScript : MonoBehaviour
     private float directionThreshold = .9f;
     [SerializeField]
     private float rotationAmmount;
+    [SerializeField]
+    private float rotationSpeed;
 
     public Transform VertuialCamera;
     public Transform Orientation;
@@ -105,16 +107,25 @@ public class PlayerScript : MonoBehaviour
         //print(direction);
         float percentOfSwipe = Vector2.Dot(Vector2.up, direction);
         float rotationY = 180 * VertuialCamera.rotation.y; //  | try local with main camera
+        float eulerRotationY = VertuialCamera.eulerAngles.y;
 
         if (Vector2.Dot(Vector2.up, direction) > directionThreshold)
         {
-            Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, rotationY, Orientation.rotation.z);
+            //Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, rotationY, Orientation.rotation.z);
+            Orientation.rotation = Quaternion.Euler(0f, eulerRotationY, 0f);
             rb.AddForce(Orientation.forward, ForceMode.Impulse);
 
-            // rotate model
-            oldRotation = 180 * PlayerModel.transform.rotation.y;
-            time = 0;
-            rotateTo = rotationY;
+            // rotate model - REMOVE
+            //oldRotation = 180 * PlayerModel.transform.rotation.y;
+            //time = 0;
+            //rotateTo = rotationY;
+
+            
+        }
+        else if (Vector2.Dot(Vector2.down, direction) > directionThreshold)
+        {
+            Orientation.rotation = Quaternion.Euler(0f, eulerRotationY + 180f, 0f);
+            rb.AddForce(Orientation.forward, ForceMode.Impulse);
         }
         else if (direction.x > 0) // right
         {
@@ -126,37 +137,42 @@ public class PlayerScript : MonoBehaviour
                 // top right 90 to 0
                 percentOfSwipe = 1 - percentOfSwipe; // inverts the percent so is 0 to 90
 
-                float ninetyPercent = 90 * percentOfSwipe;
+                //float ninetyPercent = 90 * percentOfSwipe;
+                //float ammountToRotate = rotationY + ninetyPercent;
 
-                float ammountToRotate = rotationY + ninetyPercent;
+                //Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, ammountToRotate, Orientation.rotation.z);
 
-                Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, ammountToRotate, Orientation.rotation.z);
+                Orientation.rotation = Quaternion.Euler(0f, eulerRotationY + (percentOfSwipe * 100f), 0f);
+
                 rb.AddForce(Orientation.forward, ForceMode.Impulse);
 
-                // rotate model
-                oldRotation = 180 * PlayerModel.transform.rotation.y;
-                time = 0;
-                rotateTo = ammountToRotate;
+                // rotate model - REMOVE
+                //oldRotation = 180 * PlayerModel.transform.rotation.y;
+                //time = 0;
+                //rotateTo = ammountToRotate;
                 
-                print(oldRotation + " -old | ammo- " + ammountToRotate);
+                //print(oldRotation + " -old | ammo- " + ammountToRotate);
             }
             else
             {
                 // bottom right 90 to 180
 
-                float ninetyPercent = 90 * -percentOfSwipe; // look at this -Var might not work
+                //float ninetyPercent = 90 * -percentOfSwipe; // look at this -Var might not work
 
-                float ammountToRotate = (rotationY + 90) + ninetyPercent;
+                //float ammountToRotate = (rotationY + 90) + ninetyPercent;
 
-                Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, ammountToRotate, Orientation.rotation.z);
+                //Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, ammountToRotate, Orientation.rotation.z);
+
+                Orientation.rotation = Quaternion.Euler(0f, eulerRotationY + 90f +(-percentOfSwipe * 100f), 0f);
+
                 rb.AddForce(Orientation.forward, ForceMode.Impulse);
 
-                // rotate model
-                oldRotation = 180 * PlayerModel.transform.rotation.y;
-                time = 0;
-                rotateTo = ammountToRotate;
+                // rotate model - REMOVE
+                //oldRotation = 180 * PlayerModel.transform.rotation.y;
+                //time = 0;
+                //rotateTo = ammountToRotate;
 
-                print(oldRotation + " -old | ammo- " + ammountToRotate);
+                //print(oldRotation + " -old | ammo- " + ammountToRotate);
             }
         }
         else // left
@@ -169,37 +185,43 @@ public class PlayerScript : MonoBehaviour
 
                 percentOfSwipe = 1 - percentOfSwipe; // inverts the percent so is 0 to -90
 
-                float ninetyPercent = 90 * -percentOfSwipe; // look at this -Var might not work
+                //float ninetyPercent = 90 * -percentOfSwipe; // look at this -Var might not work
 
-                float ammountToRotate = rotationY + ninetyPercent;
+                //float ammountToRotate = rotationY + ninetyPercent;
 
-                Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, ammountToRotate, Orientation.rotation.z);
+                //Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, ammountToRotate, Orientation.rotation.z);
+
+                Orientation.rotation = Quaternion.Euler(0f, eulerRotationY + (-percentOfSwipe * 100f), 0f);
+
                 rb.AddForce(Orientation.forward, ForceMode.Impulse);
 
-                // rotate model
-                oldRotation = 180 * PlayerModel.transform.rotation.y;
-                time = 0;
-                rotateTo = ammountToRotate;
+                // rotate model - REMOVE
+                //oldRotation = 180 * PlayerModel.transform.rotation.y;
+                //time = 0;
+                //rotateTo = ammountToRotate;
 
-                print(oldRotation + " -old | ammo- " + ammountToRotate);
+                //print(oldRotation + " -old | ammo- " + ammountToRotate);
             }
             else
             {
 
                 // bottom left -90 to -180
-                float ninetyPercent = 90 * percentOfSwipe;
+                //float ninetyPercent = 90 * percentOfSwipe;
 
-                float ammountToRotate = (rotationY - 90) + ninetyPercent;
+                //float ammountToRotate = (rotationY - 90) + ninetyPercent;
 
-                Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, ammountToRotate, Orientation.rotation.z);
+                //Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, ammountToRotate, Orientation.rotation.z);
+
+                Orientation.rotation = Quaternion.Euler(0f, eulerRotationY + -90f + (percentOfSwipe * 100f), 0f);
+
                 rb.AddForce(Orientation.forward, ForceMode.Impulse);
 
-                // rotate model
-                oldRotation = 180 * PlayerModel.transform.rotation.y;
-                time = 0;
-                PlayerModelY = ammountToRotate;
+                // rotate model - REMOVE
+                //oldRotation = 180 * PlayerModel.transform.rotation.y;
+                //time = 0;
+                //PlayerModelY = ammountToRotate;
 
-                print(oldRotation + " -old | ammo- " + ammountToRotate);
+                //print(oldRotation + " -old | ammo- " + ammountToRotate);
             }
         }
 
