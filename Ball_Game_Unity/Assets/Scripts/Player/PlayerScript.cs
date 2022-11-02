@@ -55,7 +55,7 @@ public class PlayerScript : MonoBehaviour
         inputManager = InputManager.Instance;
         rb = GetComponent<Rigidbody>();
 
-        print(PlayerModel.transform.rotation.y);
+        //print(PlayerModel.transform.rotation.y);
     }
 
     void Update() // UPDATE
