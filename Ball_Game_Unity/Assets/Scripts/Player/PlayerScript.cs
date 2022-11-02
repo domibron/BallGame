@@ -13,9 +13,11 @@ public class PlayerScript : MonoBehaviour
     [SerializeField, Range(0f, 1f)]
     private float directionThreshold = .9f;
     [SerializeField]
-    private float rotationAmmount;
-    [SerializeField]
     private float rotationSpeed;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private float swipeNurf;
 
     public Transform VertuialCamera;
     public Transform Orientation;
@@ -28,8 +30,8 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody rb;
 
     private Vector2 startPosision;
-    private float startTime;
     private Vector2 endPosision;
+    private float startTime;
     private float endTime;
 
     private float yRotation;
@@ -44,6 +46,8 @@ public class PlayerScript : MonoBehaviour
     private float PlayerModelY;
 
     private float time;
+
+    private float swipeDistance;
 
 
     void Awake()
@@ -99,6 +103,9 @@ public class PlayerScript : MonoBehaviour
             Vector3 direction = endPosision - startPosision;
             Vector2 direction2D = new Vector2(direction.x, direction.y).normalized;
             SwipeDirection(direction2D);
+            swipeDistance = Vector3.Distance(endPosision, startPosision); // gets the distance of the two points.
+            swipeDistance = swipeDistance < 1f ? 1f : swipeDistance; // make sure the value is never below 1.
+            swipeDistance = swipeDistance / swipeNurf; // loweres the value.
         }
     }
 
@@ -106,14 +113,14 @@ public class PlayerScript : MonoBehaviour
     {
         //print(direction);
         float percentOfSwipe = Vector2.Dot(Vector2.up, direction);
-        float rotationY = 180 * VertuialCamera.rotation.y; //  | try local with main camera
+        float rotationY = 180 * VertuialCamera.rotation.y; //  | try local with main camera | it works fine
         float eulerRotationY = VertuialCamera.eulerAngles.y;
 
         if (Vector2.Dot(Vector2.up, direction) > directionThreshold)
         {
             //Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, rotationY, Orientation.rotation.z);
             Orientation.rotation = Quaternion.Euler(0f, eulerRotationY, 0f);
-            rb.AddForce(Orientation.forward, ForceMode.Impulse);
+            rb.AddForce(Orientation.forward * speed * swipeDistance, ForceMode.Impulse);
 
             // rotate model - REMOVE
             //oldRotation = 180 * PlayerModel.transform.rotation.y;
@@ -125,7 +132,7 @@ public class PlayerScript : MonoBehaviour
         else if (Vector2.Dot(Vector2.down, direction) > directionThreshold)
         {
             Orientation.rotation = Quaternion.Euler(0f, eulerRotationY + 180f, 0f);
-            rb.AddForce(Orientation.forward, ForceMode.Impulse);
+            rb.AddForce(Orientation.forward * speed * swipeDistance, ForceMode.Impulse);
         }
         else if (direction.x > 0) // right
         {
@@ -144,7 +151,7 @@ public class PlayerScript : MonoBehaviour
 
                 Orientation.rotation = Quaternion.Euler(0f, eulerRotationY + (percentOfSwipe * 100f), 0f);
 
-                rb.AddForce(Orientation.forward, ForceMode.Impulse);
+                rb.AddForce(Orientation.forward * speed * swipeDistance, ForceMode.Impulse);
 
                 // rotate model - REMOVE
                 //oldRotation = 180 * PlayerModel.transform.rotation.y;
@@ -165,7 +172,7 @@ public class PlayerScript : MonoBehaviour
 
                 Orientation.rotation = Quaternion.Euler(0f, eulerRotationY + 90f +(-percentOfSwipe * 100f), 0f);
 
-                rb.AddForce(Orientation.forward, ForceMode.Impulse);
+                rb.AddForce(Orientation.forward * speed * swipeDistance, ForceMode.Impulse);
 
                 // rotate model - REMOVE
                 //oldRotation = 180 * PlayerModel.transform.rotation.y;
@@ -193,7 +200,7 @@ public class PlayerScript : MonoBehaviour
 
                 Orientation.rotation = Quaternion.Euler(0f, eulerRotationY + (-percentOfSwipe * 100f), 0f);
 
-                rb.AddForce(Orientation.forward, ForceMode.Impulse);
+                rb.AddForce(Orientation.forward * speed * swipeDistance, ForceMode.Impulse);
 
                 // rotate model - REMOVE
                 //oldRotation = 180 * PlayerModel.transform.rotation.y;
@@ -214,7 +221,7 @@ public class PlayerScript : MonoBehaviour
 
                 Orientation.rotation = Quaternion.Euler(0f, eulerRotationY + -90f + (percentOfSwipe * 100f), 0f);
 
-                rb.AddForce(Orientation.forward, ForceMode.Impulse);
+                rb.AddForce(Orientation.forward * speed * swipeDistance, ForceMode.Impulse);
 
                 // rotate model - REMOVE
                 //oldRotation = 180 * PlayerModel.transform.rotation.y;
