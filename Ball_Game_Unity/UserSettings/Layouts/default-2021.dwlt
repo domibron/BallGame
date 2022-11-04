@@ -19,8 +19,13 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
+<<<<<<< HEAD
   m_Title: Project
   m_RootView: {fileID: 7}
+=======
+  m_Title: Game
+  m_RootView: {fileID: 6}
+>>>>>>> Lawren
   m_MinSize: {x: 875, y: 371}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 0
@@ -32,6 +37,7 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
+<<<<<<< HEAD
   m_EditorHideFlags: 0
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: GameView
@@ -58,6 +64,8 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
+=======
+>>>>>>> Lawren
   m_EditorHideFlags: 1
   m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
@@ -74,8 +82,13 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
+<<<<<<< HEAD
   controlID: 84
 --- !u!114 &4
+=======
+  controlID: 80
+--- !u!114 &3
+>>>>>>> Lawren
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,9 +137,15 @@ MonoBehaviour:
     y: 0
     width: 361
     height: 583
+<<<<<<< HEAD
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 19}
+=======
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 18}
+>>>>>>> Lawren
   m_Panes:
   - {fileID: 19}
   m_Selected: 0
@@ -253,8 +272,13 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
+<<<<<<< HEAD
   controlID: 89
 --- !u!114 &11
+=======
+  controlID: 17
+--- !u!114 &10
+>>>>>>> Lawren
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -278,8 +302,13 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
+<<<<<<< HEAD
   controlID: 90
 --- !u!114 &12
+=======
+  controlID: 18
+--- !u!114 &11
+>>>>>>> Lawren
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -302,7 +331,13 @@ MonoBehaviour:
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 20}
   m_Panes:
+<<<<<<< HEAD
   - {fileID: 20}
+=======
+  - {fileID: 19}
+  - {fileID: 21}
+  - {fileID: 12}
+>>>>>>> Lawren
   m_Selected: 0
   m_LastSelected: 1
 --- !u!114 &12
@@ -1083,22 +1118,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets/Materials/Shader
+=======
+    - Assets/Scenes
+>>>>>>> Lawren
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
+<<<<<<< HEAD
   - Assets/Materials/Shader
+=======
+  - Assets/Scenes
+>>>>>>> Lawren
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\16716\Documents\A2-Dimensionality-Project\BallGame\Ball_Game_Unity
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 1}
+<<<<<<< HEAD
     m_SelectedIDs: f8640000
     m_LastClickedID: 25848
     m_ExpandedIDs: 0000000058630000a8630000ae63000000ca9a3bffffff7f
+=======
+    m_SelectedIDs: 36630000
+    m_LastClickedID: 25398
+    m_ExpandedIDs: 00000000326300003463000036630000386300003a6300003c63000000ca9a3bffffff7f
+>>>>>>> Lawren
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1126,7 +1175,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 0000000058630000
+=======
+    m_ExpandedIDs: 00000000326300003463000036630000386300003a6300003c630000
+>>>>>>> Lawren
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1256,7 +1309,11 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 886b0000
       m_LastClickedID: 0
+<<<<<<< HEAD
       m_ExpandedIDs: 7af8ffffecfaffff
+=======
+      m_ExpandedIDs: 5eceffff48cfffff0ad0ffffa6faffff0efbffff
+>>>>>>> Lawren
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1272,7 +1329,11 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
+<<<<<<< HEAD
         m_ClientGUIView: {fileID: 12}
+=======
+        m_ClientGUIView: {fileID: 4}
+>>>>>>> Lawren
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -1300,9 +1361,15 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 359
     y: 101
     width: 498
+=======
+    x: 361
+    y: 73
+    width: 1103
+>>>>>>> Lawren
     height: 562
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -1505,9 +1572,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: 7.3821735, y: -7.743678, z: 6.0612187}
     speed: 2
     m_Value: {x: 7.3821735, y: -7.743678, z: 6.0612187}
+=======
+    m_Target: {x: 8.86186, y: 1.3907609, z: -4.563558}
+    speed: 2
+    m_Value: {x: 8.86186, y: 1.3907609, z: -4.563558}
+>>>>>>> Lawren
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1554,9 +1627,15 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
+<<<<<<< HEAD
     m_Target: {x: 0.27310175, y: 0.2667873, z: -0.07912272, w: 0.9208612}
     speed: 2
     m_Value: {x: 0.27448195, y: 0.26666754, z: -0.07952259, w: 0.9204479}
+=======
+    m_Target: {x: 0.11132137, y: 0.63393784, z: -0.09289791, w: 0.7597049}
+    speed: 2
+    m_Value: {x: 0.11131853, y: 0.6339217, z: -0.09289554, w: 0.7596855}
+>>>>>>> Lawren
   m_Size:
     m_Target: 8.03298
     speed: 2
@@ -1633,9 +1712,15 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 859
     y: 101
     width: 603
+=======
+    x: 361
+    y: 73
+    width: 1103
+>>>>>>> Lawren
     height: 562
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
