@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class JumpPad : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float power;
+    public float coolDown;
+
+    private float coolDownTime;
+    private float time;
+
+    private void Update()
     {
-        
+        time += Time.deltaTime;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (time >= coolDownTime)
+        {
+            Rigidbody rb = other.transform.root.GetComponentInChildren<Rigidbody>();
+
+            rb.AddForce(Vector3.up * 200f, ForceMode.Impulse);
+
+            coolDownTime = time + coolDown;
+        }
     }
 }

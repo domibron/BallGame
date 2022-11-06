@@ -70,6 +70,31 @@ public class PlayerScript : MonoBehaviour
         PlayerModel.transform.rotation = Quaternion.Euler(PlayerModel.transform.rotation.x, PlayerModelY, PlayerModel.transform.rotation.z);
     }
 
+    public void FireScaleRay(bool scaleDown)
+    {
+        RaycastHit hit;
+        GameObject item;
+        bool hitConfirmed;
+
+        // this sets a bool while getting a hit of a object from a raycast.
+        hitConfirmed = Physics.Raycast(transform.position, Orientation.forward, out hit, 30f);
+
+        Debug.DrawRay(transform.position, Orientation.forward, Color.red); // shows line of ray.
+
+        // this checks if there was no hit or a object is not scalable and end the function
+        if (!hitConfirmed || hit.transform.tag == "NoneScalable")
+            return;
+
+        item = hit.transform.gameObject;
+
+        // depending on the bool set in the function it will secale the objust down or up by 2.
+        if (scaleDown)
+            item.transform.localScale = new Vector3(item.transform.localScale.x / 2f, item.transform.localScale.y / 2f, item.transform.localScale.z / 2f);
+        else
+            item.transform.localScale = new Vector3(item.transform.localScale.x * 2f, item.transform.localScale.y * 2f, item.transform.localScale.z * 2f);
+
+    }
+
     void OnEnable()
     {
         inputManager.OnStartPrimaryTouch += SwipeStart;
