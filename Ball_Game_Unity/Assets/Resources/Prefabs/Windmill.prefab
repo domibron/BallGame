@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 7469595782528625515}
   m_Layer: 0
   m_Name: Windmill
-  m_TagString: Untagged
+  m_TagString: NoneScalable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
