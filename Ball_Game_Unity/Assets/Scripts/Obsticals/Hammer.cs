@@ -5,7 +5,9 @@ using UnityEngine;
 public class Hammer : MonoBehaviour
 {
     [SerializeField]
-    private float speed;
+    private float speed = 50f;
+    [SerializeField, Range(0.1f, 0.9f)]
+    private float swingRange = 0.45f;
 
     private bool swingingRight = true;
 
@@ -19,13 +21,13 @@ public class Hammer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(transform.eulerAngles.z);
+        print($"{swingingRight} - {transform.localRotation.z} - {swingRange}");
 
-        if (transform.eulerAngles.z >= 45f)
+        if (transform.localRotation.z >= swingRange)
         {
             swingingRight = false;
         }
-        else if (transform.eulerAngles.z <= 315f)
+        else if (transform.localRotation.z <= -swingRange)
         {
             swingingRight = true;
         }
