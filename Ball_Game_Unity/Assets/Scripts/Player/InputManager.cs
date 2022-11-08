@@ -60,7 +60,7 @@ public class InputManager : MonoBehaviour
 
     private void EndPrimaryTouch(InputAction.CallbackContext context)
     {
-        if (OnEndPrimaryTouch != null) OnEndPrimaryTouch(Utils.ViewportToScreenPoint(mainCamera, touchControls.Touch.PrimaryPosision.ReadValue<Vector2>()), (float)context.startTime);
+        if (OnEndPrimaryTouch != null) OnEndPrimaryTouch(Utils.ViewportToScreenPoint(mainCamera, touchControls.Touch.PrimaryPosision.ReadValue<Vector2>()), (float)context.time);
     }
 
     public Vector2 PrimaryPosition()
