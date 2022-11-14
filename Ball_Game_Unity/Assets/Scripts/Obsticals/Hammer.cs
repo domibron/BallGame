@@ -21,7 +21,7 @@ public class Hammer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print($"{swingingRight} - {transform.localRotation.z} - {swingRange}");
+        //print($"{swingingRight} - {transform.localRotation.z} - {swingRange}");
 
         if (transform.localRotation.z >= swingRange)
         {
