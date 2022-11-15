@@ -1385,6 +1385,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portable Player Asset
       objectReference: {fileID: 0}
+    - target: {fileID: 5448099359858784185, guid: 5451b18b9e4a66d48a4a5e8cf15636a8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 56b16382f33b08a4da2bf85efc0c8c91, type: 2}
     - target: {fileID: 6696840522063469329, guid: 5451b18b9e4a66d48a4a5e8cf15636a8, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2515,7 +2519,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28422
+  m_Name: pb_Mesh34248
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
