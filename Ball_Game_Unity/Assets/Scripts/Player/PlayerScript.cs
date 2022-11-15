@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -24,6 +27,8 @@ public class PlayerScript : MonoBehaviour
     public Transform MainCamera;
     public GameObject PlayerModel;
 
+    public Slider SpeedSlider;
+    public TMP_Text text;
 
     private InputManager inputManager;
 
@@ -56,13 +61,18 @@ public class PlayerScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         //print(PlayerModel.transform.rotation.y);
+
+        SpeedSlider.value = speed;
     }
 
-    void Update() // UPDATE
+    void Update() // UPDATE what exactly?
     {
         // scrap the rotation
         // scrap the rotation
+        // no
 
+        speed = SpeedSlider.value;
+        text.text = speed.ToString();
 
         time += Time.deltaTime * 50f;
         PlayerModelY = Mathf.Lerp(oldRotation, rotateTo, time);
@@ -303,5 +313,10 @@ public class PlayerScript : MonoBehaviour
         //	//transform.rotation = Quaternion.Euler(transform.rotation.x - rotationAmmount, transform.rotation.y, transform.rotation.z);
         //	Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, yRotation, Orientation.rotation.z);
         //}
+    }
+
+    public void LoadLevlInt(int levelIndex)
+    {
+        SceneManager.LoadSceneAsync(levelIndex, LoadSceneMode.Single);
     }
 }
