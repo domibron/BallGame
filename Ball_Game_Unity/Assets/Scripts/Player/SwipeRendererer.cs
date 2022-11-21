@@ -11,8 +11,6 @@ public class SwipeRendererer : MonoBehaviour
     [SerializeField, Range(0f, 1f)]
     private float directionThreshold = .9f;
 
-
-
     private InputManager inputManager;
 
     private Rigidbody rb;
@@ -54,16 +52,15 @@ public class SwipeRendererer : MonoBehaviour
 
     private void SwipeEnd(Vector2 pos, float time)
     {
-
         endPosision = pos;
         endTime = time;
         DetectSwipe();
     }
 
 
-
     private void DetectSwipe()
     {
+
         if (Vector3.Distance(startPosision, endPosision) >= minimumDistance &&
             (endTime - startTime) <= maximumTime)
         {

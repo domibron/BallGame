@@ -54,7 +54,6 @@ public class PlayerScript : MonoBehaviour
 
     private float swipeDistance;
 
-
     void Awake()
     {
         inputManager = InputManager.Instance;
