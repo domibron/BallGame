@@ -79,12 +79,12 @@ public class PlayerScript : MonoBehaviour
 
         PlayerModel.transform.rotation = Quaternion.Euler(PlayerModel.transform.rotation.x, PlayerModelY, PlayerModel.transform.rotation.z);
 
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Orientation.forward, out hit, 30f))
-        {
+        //RaycastHit hit;
+        //if (Physics.Raycast(transform.position, Orientation.forward, out hit, 30f))
+        //{
             
-            Debug.DrawLine(transform.position, hit.point, Color.cyan, 5f);
-        }
+        //    Debug.DrawLine(transform.position, hit.point, Color.cyan, 5f);
+        //}
     }
 
     public void FireScaleRay(bool scaleDown)
