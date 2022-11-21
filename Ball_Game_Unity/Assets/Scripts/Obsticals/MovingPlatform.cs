@@ -8,6 +8,8 @@ public class MovingPlatform : MonoBehaviour
     public Transform PointA;
     public Transform PointB;
 
+    private GameObject ObjectToParent;
+
     public float speed;
     public float delayBeforeMoving;
 
@@ -21,6 +23,17 @@ public class MovingPlatform : MonoBehaviour
     void FixedUpdate()
     {
         MovePlatform();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        ObjectToParent = other.transform.root.gameObject;
+        ObjectToParent.transform.SetParent(transform);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        ObjectToParent.transform.SetParent(null);
     }
 
     private IEnumerator CheckIfPlatformIsAtPoint()
