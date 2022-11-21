@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 420311754654837059}
   - component: {fileID: 420311754654837057}
   - component: {fileID: 420311754654837056}
+  - component: {fileID: 469462830}
   m_Layer: 0
   m_Name: Respawn Point
   m_TagString: Untagged
@@ -108,7 +109,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420311754654837058}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -143,3 +144,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &469462830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420311754654837058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ad483f4965027e43a14a4a0f045deb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enable: 1
+  Square: 0
+  Sphere: 1
+  radius: 0.1

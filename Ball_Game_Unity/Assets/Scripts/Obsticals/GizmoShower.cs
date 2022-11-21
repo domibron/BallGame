@@ -16,7 +16,7 @@ public class GizmoShower : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (!enable)
+        if (!enable || Application.isPlaying)
             return;
 
         if (Square)
