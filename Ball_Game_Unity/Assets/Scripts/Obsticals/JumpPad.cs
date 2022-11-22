@@ -21,7 +21,7 @@ public class JumpPad : MonoBehaviour
         {
             Rigidbody rb = other.transform.root.GetComponentInChildren<Rigidbody>();
 
-            rb.AddForce(Vector3.up * power, ForceMode.Impulse);
+            rb.AddForce(transform.up * power, ForceMode.Impulse);
 
             coolDownTime = time + coolDown;
         }

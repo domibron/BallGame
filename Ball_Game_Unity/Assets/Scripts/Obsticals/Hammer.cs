@@ -11,17 +11,9 @@ public class Hammer : MonoBehaviour
 
     private bool swingingRight = true;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        //print($"{swingingRight} - {transform.localRotation.z} - {swingRange}");
+        // should add a pause.
 
         if (transform.localRotation.z >= swingRange)
         {
