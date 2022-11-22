@@ -1949,6 +1949,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 773176485672816326, guid: 06898c8deb667b84e8cd64dd45380d32, type: 3}
+      propertyPath: m_Size.z
+      value: 503.5
+      objectReference: {fileID: 0}
     - target: {fileID: 773176485672816327, guid: 06898c8deb667b84e8cd64dd45380d32, type: 3}
       propertyPath: m_Name
       value: Kill Box
