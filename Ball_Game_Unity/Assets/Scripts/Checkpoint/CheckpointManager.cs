@@ -134,12 +134,11 @@ public class CheckpointManager : MonoBehaviour
     // called so another script can reset the player like the death zones
     public void RestartToChecpoint()
     {
-        // this check if the script can restart
+        // this gets the rigidbody and stops all velocity. 
+        Rigidbody rb = this.GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
 
-        //if (Input.GetKey(KeyCode.LeftShift)) GM.Reload();
-
-        //if (currentCheckpoint == -1) GM.Reload();
-        //else 
+        // sends the player to the curent checkpoint.
         transform.position = currentCheckpointResetPoint;
     }
 
