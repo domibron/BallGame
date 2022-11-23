@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NoneScalable
   - Checkpoint
+  - CheckpointAdvance
   layers:
   - Default
   - TransparentFX
