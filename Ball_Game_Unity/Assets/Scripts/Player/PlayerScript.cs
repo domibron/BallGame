@@ -22,6 +22,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private float swipeNurf;
 
+    [Space]
+
     public Transform VertuialCamera;
     public Transform Orientation;
     public Transform MainCamera;
@@ -72,7 +74,7 @@ public class PlayerScript : MonoBehaviour
         // no
 
         speed = SpeedSlider.value;
-        text.text = speed.ToString();
+        text.text = speed.ToString("F1");
 
         time += Time.deltaTime * 50f;
         PlayerModelY = Mathf.Lerp(oldRotation, rotateTo, time);
@@ -82,7 +84,7 @@ public class PlayerScript : MonoBehaviour
         //RaycastHit hit;
         //if (Physics.Raycast(transform.position, Orientation.forward, out hit, 30f))
         //{
-            
+
         //    Debug.DrawLine(transform.position, hit.point, Color.cyan, 5f);
         //}
     }
@@ -99,7 +101,7 @@ public class PlayerScript : MonoBehaviour
         Debug.DrawRay(transform.position, Orientation.forward, Color.red); // shows line of ray.
 
         // this checks if there was no hit or a object is not scalable and end the function
-        if (!hitConfirmed || hit.transform.tag == "NoneScalable")
+        if (!hitConfirmed || hit.transform.tag == "NoneScalable" || hit.transform.tag != "Scalable")
             return;
 
         item = hit.transform.gameObject;
@@ -169,7 +171,7 @@ public class PlayerScript : MonoBehaviour
             //time = 0;
             //rotateTo = rotationY;
 
-            
+
         }
         else if (Vector2.Dot(Vector2.down, direction) > directionThreshold)
         {
@@ -199,7 +201,7 @@ public class PlayerScript : MonoBehaviour
                 //oldRotation = 180 * PlayerModel.transform.rotation.y;
                 //time = 0;
                 //rotateTo = ammountToRotate;
-                
+
                 //print(oldRotation + " -old | ammo- " + ammountToRotate);
             }
             else
@@ -212,7 +214,7 @@ public class PlayerScript : MonoBehaviour
 
                 //Orientation.transform.rotation = Quaternion.Euler(Orientation.rotation.x, ammountToRotate, Orientation.rotation.z);
 
-                Orientation.rotation = Quaternion.Euler(0f, eulerRotationY + 90f +(-percentOfSwipe * 100f), 0f);
+                Orientation.rotation = Quaternion.Euler(0f, eulerRotationY + 90f + (-percentOfSwipe * 100f), 0f);
 
                 rb.AddForce(Orientation.forward * speed * swipeDistance, ForceMode.Impulse);
 
@@ -275,7 +277,7 @@ public class PlayerScript : MonoBehaviour
         }
 
 
-        
+
 
 
 
