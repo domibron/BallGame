@@ -9,10 +9,10 @@ public class InputManager : MonoBehaviour
 
     #region Events
 
-    public delegate void StartTouchEvent(Vector2 position, float time);
-    public event StartTouchEvent OnStartTouch;
-    public delegate void EndTouchEvent(Vector2 position, float time);
-    public event EndTouchEvent OnEndTouch;
+    // public delegate void StartTouchEvent(Vector2 position, float time);
+    // public event StartTouchEvent OnStartTouch;
+    // public delegate void EndTouchEvent(Vector2 position, float time);
+    // public event EndTouchEvent OnEndTouch;
 
     public delegate void StartPrimaryTouchEvent(Vector2 position, float time);
     public event StartPrimaryTouchEvent OnStartPrimaryTouch;
@@ -46,8 +46,8 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        touchControls.Touch.TouchPressed.started += ctx => StartTouch(ctx);
-        touchControls.Touch.TouchPressed.canceled += ctx => EndTouch(ctx);
+        // touchControls.Touch.TouchPressed.started += ctx => StartTouch(ctx);
+        // touchControls.Touch.TouchPressed.canceled += ctx => EndTouch(ctx);
 
         touchControls.Touch.PrimaryTouch.started += ctx => StartPrimaryTouch(ctx);
         touchControls.Touch.PrimaryTouch.canceled += ctx => EndPrimaryTouch(ctx);
@@ -72,23 +72,23 @@ public class InputManager : MonoBehaviour
 
 
 
-    private void StartTouch(InputAction.CallbackContext context)
-    {
-        //print(touchControls.Touch.TouchPosition.ReadValue<Vector2>());
-        if (OnStartTouch != null) OnStartTouch(touchControls.Touch.TouchPosition.ReadValue<Vector2>(), (float)context.startTime);
-    }
+    // private void StartTouch(InputAction.CallbackContext context)
+    // {
+    //     //print(touchControls.Touch.TouchPosition.ReadValue<Vector2>());
+    //     if (OnStartTouch != null) OnStartTouch(touchControls.Touch.TouchPosition.ReadValue<Vector2>(), (float)context.startTime);
+    // }
 
-    private void EndTouch(InputAction.CallbackContext context)
-    {
-        //print(touchControls.Touch.TouchPosition.ReadValue<Vector2>());
-        if (OnEndTouch != null) OnEndTouch(touchControls.Touch.TouchPosition.ReadValue<Vector2>(), (float)context.time); // onend touch - i will asfasfasfasfasffasasfasfasfsfasfasf
-                                                                                                                         // no wonder it was null, cos it wasn't checking if it was null, but im the guru of unity, i assended the gods and became...
-    }
+    // private void EndTouch(InputAction.CallbackContext context)
+    // {
+    //     //print(touchControls.Touch.TouchPosition.ReadValue<Vector2>());
+    //     if (OnEndTouch != null) OnEndTouch(touchControls.Touch.TouchPosition.ReadValue<Vector2>(), (float)context.time); // onend touch - i will asfasfasfasfasffasasfasfasfsfasfasf
+    //                                                                                                                      // no wonder it was null, cos it wasn't checking if it was null, but im the guru of unity, i assended the gods and became...
+    // }
 
-    private void FingerDown(Finger finger)
-    {
-        if (OnStartTouch != null) OnStartTouch(finger.screenPosition, Time.time);
-    }
+    // private void FingerDown(Finger finger)
+    // {
+    //     if (OnStartTouch != null) OnStartTouch(finger.screenPosition, Time.time);
+    // }
 
     void Update()
     {

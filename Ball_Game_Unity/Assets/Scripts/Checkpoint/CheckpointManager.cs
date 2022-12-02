@@ -28,11 +28,13 @@ public class CheckpointManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!isThereCheckpoints)
+            return;
+
         if (useIdSystem)
             AdvanceCheckpointStart();
         else
             AverageCheckpointStart(); // this is correct, look closer
-
     }
 
 
@@ -40,11 +42,16 @@ public class CheckpointManager : MonoBehaviour
 
     void Update()
     {
+        if (!isThereCheckpoints)
+            return;
+
         if (useIdSystem)
             AdvanceCheckpointUpdate();
         else
             AdverageCheckpointUpdate();
     }
+
+
 
     private void AdvanceCheckpointStart()
     {
@@ -68,6 +75,14 @@ public class CheckpointManager : MonoBehaviour
             }
         }
 
+        if (CheckPointDictionary.Count <= 0)
+        {
+            isThereCheckpoints = false;
+        }
+        else
+        {
+            isThereCheckpoints = true;
+        }
     }
 
     private void AdvanceCheckpointUpdate()
@@ -109,10 +124,19 @@ public class CheckpointManager : MonoBehaviour
 
         AllCheckpointParents.Sort(SortByName);
 
-        if (AllCheckpointParents.Count >= 0)
-            isThereCheckpoints = true;
+        // if (AllCheckpointParents.Count >= 0)
+        //     isThereCheckpoints = true;
 
         TrueCheckpointCount = AllCheckpointParents.Count - 1;
+
+        if (AllCheckpointParents.Count <= 0)
+        {
+            isThereCheckpoints = false;
+        }
+        else
+        {
+            isThereCheckpoints = true;
+        }
     }
 
     private void AdverageCheckpointUpdate()

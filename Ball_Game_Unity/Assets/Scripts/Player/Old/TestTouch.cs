@@ -13,12 +13,12 @@ public class TestTouch : MonoBehaviour
 
     private void OnEnable()
     {
-        inputManager.OnStartTouch += Move;
+        inputManager.OnStartPrimaryTouch += Move;
     }
 
     private void OnDisable()
     {
-        inputManager.OnEndTouch -= Move;
+        inputManager.OnEndPrimaryTouch -= Move;
     }
 
     public void Move(Vector2 screenPos, float time)
