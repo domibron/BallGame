@@ -35,15 +35,6 @@ public partial class @JoyStick : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Look"",
-                    ""type"": ""Value"",
-                    ""id"": ""5e79a47b-f1fe-459d-bdf0-2770bac0bc01"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -112,72 +103,6 @@ public partial class @JoyStick : IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Arrow"",
-                    ""id"": ""6d1ab1b7-ffa4-4d31-b5a1-73468a6e8cbe"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""c4875c9b-457f-4963-8690-19f66b1eceb2"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""ff750131-430f-4c2a-99f7-c6e5a259f6d2"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""407df8d9-9d25-4f60-b47b-40ec9d6cbfe2"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""e7a7f1e4-1bc9-48e4-805e-50ca686712c7"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6e32d4df-5a54-4408-9eea-037fc04e0a0f"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -187,7 +112,6 @@ public partial class @JoyStick : IInputActionCollection2, IDisposable
         // PlayerMain
         m_PlayerMain = asset.FindActionMap("PlayerMain", throwIfNotFound: true);
         m_PlayerMain_Move = m_PlayerMain.FindAction("Move", throwIfNotFound: true);
-        m_PlayerMain_Look = m_PlayerMain.FindAction("Look", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -248,13 +172,11 @@ public partial class @JoyStick : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerMain;
     private IPlayerMainActions m_PlayerMainActionsCallbackInterface;
     private readonly InputAction m_PlayerMain_Move;
-    private readonly InputAction m_PlayerMain_Look;
     public struct PlayerMainActions
     {
         private @JoyStick m_Wrapper;
         public PlayerMainActions(@JoyStick wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_PlayerMain_Move;
-        public InputAction @Look => m_Wrapper.m_PlayerMain_Look;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMain; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -267,9 +189,6 @@ public partial class @JoyStick : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnMove;
-                @Look.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnLook;
-                @Look.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnLook;
-                @Look.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnLook;
             }
             m_Wrapper.m_PlayerMainActionsCallbackInterface = instance;
             if (instance != null)
@@ -277,9 +196,6 @@ public partial class @JoyStick : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Look.started += instance.OnLook;
-                @Look.performed += instance.OnLook;
-                @Look.canceled += instance.OnLook;
             }
         }
     }
@@ -287,6 +203,5 @@ public partial class @JoyStick : IInputActionCollection2, IDisposable
     public interface IPlayerMainActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnLook(InputAction.CallbackContext context);
     }
 }

@@ -364,8 +364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d677f1681015749b15c436eec6d880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovementRange: 50
-  m_ControlPath: <Gamepad>/rightStick
+  m_MovementRange: 500
+  m_ControlPath: <Gamepad>/leftStick
 --- !u!1 &327663352
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,7 +844,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-27382
+  m_Name: pb_Mesh35608
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1640,7 +1640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MovementRange: 150
-  m_ControlPath: <Gamepad>/leftStick
+  m_ControlPath: <Gamepad>/rightStick
 --- !u!114 &1261855240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2544,7 +2544,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2511554423867758636}
-  m_LocalRotation: {x: 0.08767964, y: 0.58980805, z: -0.064629465, w: 0.8001636}
+  m_LocalRotation: {x: 0.08767964, y: 0.589808, z: -0.06462945, w: 0.8001636}
   m_LocalPosition: {x: -1.241785, y: 0.51, z: -0.38466883}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2659,7 +2659,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2511554424191948177}
-  m_LocalRotation: {x: 0.08767964, y: 0.58980805, z: -0.064629465, w: 0.8001636}
+  m_LocalRotation: {x: 0.08767964, y: 0.589808, z: -0.06462945, w: 0.8001636}
   m_LocalPosition: {x: -1.241785, y: 0.51, z: -0.38466883}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3674,6 +3674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ddc594f46a47c4996e1da17d7f1bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
   orient: {fileID: 2511554424694525434}
   VertuialCamera: {fileID: 2511554423867758638}
 --- !u!1 &9112473228432994170
