@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class New_playerController : MonoBehaviour
 {
@@ -15,6 +18,8 @@ public class New_playerController : MonoBehaviour
 
     public Transform orient;
     public Transform VertuialCamera;
+    public Slider SpeedSlider;
+    public Text text;
 
 
     void Awake()
@@ -35,6 +40,9 @@ public class New_playerController : MonoBehaviour
 
     void Update()
     {
+        speed = SpeedSlider.value;
+        text.text = speed.ToString("F1");
+
         Vector2 movementInput = playerInput.PlayerMain.Move.ReadValue<Vector2>();
         Vector3 move = new Vector3(movementInput.x, 0f, movementInput.y);
 
@@ -51,7 +59,6 @@ public class New_playerController : MonoBehaviour
             MovePlayer(movementInput, eulerRotationY, product);
         }
 
-        print(playerInput.PlayerMain.Move.ReadValue<Vector2>().magnitude);
         if (playerInput.PlayerMain.Move.ReadValue<Vector2>().magnitude * 10f > 1)
         {
             boostSpeed = playerInput.PlayerMain.Move.ReadValue<Vector2>().magnitude * 5f;
