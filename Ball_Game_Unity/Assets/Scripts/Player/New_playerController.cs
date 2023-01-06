@@ -19,7 +19,7 @@ public class New_playerController : MonoBehaviour
     public Transform orient;
     public Transform VertuialCamera;
     public Slider SpeedSlider;
-    public Text text;
+    public TMP_Text text;
 
 
     void Awake()

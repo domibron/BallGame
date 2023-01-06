@@ -13,10 +13,11 @@ public class CheckpointManager : MonoBehaviour
     private int currentID;
 
     // average checkpoint system
-    [SerializeField] private List<GameObject> AllCheckpointParents = new List<GameObject>();
+    private List<GameObject> AllCheckpointParents = new List<GameObject>();
 
     public int currentCheckpoint = 0;
     private int TrueCheckpointCount = 0;
+    [SerializeField, Tooltip("Turn off if there are no checkpoints to stop warnings")]
     private bool isThereCheckpoints = false;
 
     public Scene MasterScene;
