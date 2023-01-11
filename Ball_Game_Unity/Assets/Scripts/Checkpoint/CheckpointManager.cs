@@ -89,7 +89,8 @@ public class CheckpointManager : MonoBehaviour
     private void AdvanceCheckpointUpdate()
     {
         // var = gets the gameobject with the key (key is the id) then it is like it's gameObject so you can do .transform after.
-        currentCheckpointResetPoint = CheckPointDictionary[currentCheckpointID].transform.Find("Respawn Point").position;
+        if (isThereCheckpoints)
+            currentCheckpointResetPoint = CheckPointDictionary[currentCheckpointID].transform.Find("Respawn Point").position;
     }
 
     public void SetCurrentCheckpointID(int id)

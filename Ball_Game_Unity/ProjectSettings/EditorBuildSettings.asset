@@ -8,14 +8,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 62ddad9c86ae4f84895e339e12a23ef3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Model_test_scene.unity
     guid: 60331827c0682b94681483a453be4cf1
   - enabled: 1
     path: Assets/Scenes/Levels/Play_test_level.unity
     guid: fe9d4431fd33fb1478316e1ed9970895
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/New_Movement_Test.unity
     guid: fb67f4fcf2d71ef439c2e81c768957d3
+  - enabled: 1
+    path: Assets/Scenes/SCALING_TEST.unity
+    guid: 46d30ebb32285cb498d734002055735b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: cd9c1086c89340e43ad25cea81701898, type: 2}
